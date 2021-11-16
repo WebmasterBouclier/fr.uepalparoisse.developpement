@@ -35,7 +35,7 @@ class CRM_Civipdev_Page_SommaireCiviparoisse extends CRM_Core_Page {
 */
 
 
-    $menuCiviParoisse['FormulaireIndividu'] = $this->addMenuCiviParoisse('images/form_particulier.png', 'Formulaire de création Individu', 'formulaire-individu');
+    $menuCiviParoisse['FormulaireIndividu'] = $this->addMenuCiviParoisse('images/form_particulier.png', 'Formulaire de création Individu', 'formulaire-foyer');
     $menuCiviParoisse['FormulaireEntreprise'] = $this->addMenuCiviParoisse('images/form_entreprise.png', 'Formulaire de création Entreprise', '');
     $menuCiviParoisse['Dates_Anniversaires'] = $this->addMenuCiviParoisse('images/anniversaires.png', 'Listes des dates d\'anniversaires', '');
     $menuCiviParoisse['Listes'] = $this->addMenuCiviParoisse('images/listes.png', 'Listes', 'sommaire-listes');

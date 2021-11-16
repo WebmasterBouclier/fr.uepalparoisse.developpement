@@ -6,4 +6,10 @@
     <title>SommaireCiviparoisse</title>
     <access_arguments>access CiviCRM</access_arguments>
   </item>
+  <item>
+    <path>civicrm/configuration-sommaire-civiparoisse</path>
+    <page_callback>CRM_Civipdev_Page_ConfigurationSommaireCiviParoisse</page_callback>
+    <title>ConfigurationSommaireCiviParoisse</title>
+    <access_arguments>access CiviCRM</access_arguments>
+  </item>
 </menu>

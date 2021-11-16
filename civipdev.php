@@ -159,7 +159,42 @@ function civipdev_civicrm_themes(&$themes) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_navigationMenu
  */
-//function civipdev_civicrm_navigationMenu(&$menu) {
+function civipdev_civicrm_navigationMenu(&$menu) {
+  $maxKey = ( max( array_keys($menu) ) );
+    $menu[$maxKey+1] = array (
+        'attributes' => array (
+            'label'      => E::ts('Paroisse'),
+            'name'       => 'menu-civiparoisse',
+            'url'        => 'civicrm/sommaire-civiparoisse',
+            'permission' => null,
+            'operator'   => null,
+            'separator'  => null,
+            'parentID'   => null,
+            'navID'      => $maxKey+1,
+            'active'     => 1
+    ),
+        'child' =>  array (
+            '1' => array (
+                'attributes' => array (
+                    'label'      => E::ts('Formulaire de création Individu'),
+                    'name'       => 'menu-formulaire-individu',
+                    'url'        => 'civicrm/formulaire-foyer',
+                    'operator'   => null,
+                    'separator'  => 1,
+                    'parentID'   => $maxKey+1,
+                    'navID'      => 1,
+                    'active'     => 1
+                ),
+                'child' => null
+            ) 
+        ) 
+    );
+}
+
+
+
+
+
 //  _civipdev_civix_insert_navigation_menu($menu, 'Mailings', array(
 //    'label' => E::ts('New subliminal message'),
 //    'name' => 'mailing_subliminal_message',
