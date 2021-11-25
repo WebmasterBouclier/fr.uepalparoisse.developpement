@@ -160,35 +160,14 @@ function civipdev_civicrm_themes(&$themes) {
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_navigationMenu
  */
 function civipdev_civicrm_navigationMenu(&$menu) {
-  $maxKey = ( max( array_keys($menu) ) );
-    $menu[$maxKey+1] = array (
-        'attributes' => array (
-            'label'      => E::ts('Paroisse'),
-            'name'       => 'menu-civiparoisse',
-            'url'        => 'civicrm/sommaire-civiparoisse',
-            'permission' => null,
-            'operator'   => null,
-            'separator'  => null,
-            'parentID'   => null,
-            'navID'      => $maxKey+1,
-            'active'     => 1
-    ),
-        'child' =>  array (
-            '1' => array (
-                'attributes' => array (
-                    'label'      => E::ts('Formulaire de création Individu'),
-                    'name'       => 'menu-formulaire-individu',
-                    'url'        => 'civicrm/formulaire-foyer',
-                    'operator'   => null,
-                    'separator'  => 1,
-                    'parentID'   => $maxKey+1,
-                    'navID'      => 1,
-                    'active'     => 1
-                ),
-                'child' => null
-            ) 
-        ) 
-    );
+
+  // créer une feuille de définition du menu Paroisse avec des array adaptés à tous les besoins
+  // appeler une function qui sera logée dans un autre php (exemple CRM_Recentitems_Utils::buildMenuItem($menu);), qui ira appeler les données nécessaires dans l'array
+  // créer une page Sommaire, également en appelant les array
+
+  CRM_Civipdev_Page_ConfigurationSommaireCiviParoisse::buildMenuCiviParoisse($menu);
+
+  
 }
 
 
