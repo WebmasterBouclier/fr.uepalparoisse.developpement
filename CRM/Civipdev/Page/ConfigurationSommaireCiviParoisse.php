@@ -3,6 +3,10 @@ use CRM_Civipdev_ExtensionUtil as E;
 
 class CRM_Civipdev_Page_ConfigurationSommaireCiviParoisse  {
 
+/* TO DO
+ * changer les images en .svg
+ */
+
 
 /**
  * Construction du menu Paroisse
@@ -27,15 +31,61 @@ class CRM_Civipdev_Page_ConfigurationSommaireCiviParoisse  {
       'permission' => 'access CiviCRM',
     );
 
+ /* Appel aux données composant le menu */
     $dataSubMenuParoisse = self::SubMenuParoisse();
-    
-    _Civipdev_civix_insert_navigation_menu($menu, NULL, $dataMenuPrincipalParoisse);
-    
+  
+/* Création de la première ligne du menu */
+    _Civipdev_civix_insert_navigation_menu($menu, NULL, $dataMenuPrincipalParoisse); 
+
+/* Création des lignes suivantes du menu */    
     foreach ($dataSubMenuParoisse as $key => $value) {
-      _Civipdev_civix_insert_navigation_menu($menu, 'menu-civiparoisse', $value);
+      _Civipdev_civix_insert_navigation_menu($menu, 'menu-civiparoisse', $value); // Création des lignes suivantes du menu
     }
 
+/* Appel pour la création du Dashboard */
+    $createDashboard = self::CreateOrGetDashboard();
+
   }
+
+
+
+
+
+
+
+/**
+ * Fonction qui créée l'entrée Menu CiviParoisse dans le Dashboard de la page d'accueil
+ * 
+ */
+  static function CreateOrGetDashboard(){
+    try {
+      $createDashboard = civicrm_api3('Dashboard', 'getsingle', [
+        'url' => 'civicrm/sommaire-civiparoisse',
+        'name' => 'sommaire-civiparoisse',
+      ]);
+    }
+    catch (Exception $e) {
+      $createDashboard = civicrm_api3('Dashboard', 'create', [
+        'name' => 'sommaire-civiparoisse',
+        'label' => 'Menu CiviParoisse',
+        'url' => 'civicrm/sommaire-civiparoisse',
+        'fullscreen_url' => 'civicrm/sommaire-civiparoisse?reset=1&context=dashletFullscreen',
+        'cache_minutes' => 1000,
+        'is_active' => 1,
+        'is_reserved' => 1,
+        'permission' => 'access CiviCRM',
+      ]);
+    }
+
+    return $createDashboard;
+  }
+
+
+
+
+
+
+
 
 /**
  * Fonction qui crée chaque ligne du menu Paroisse
